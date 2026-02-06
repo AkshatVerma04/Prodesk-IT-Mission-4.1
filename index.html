@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cover Letter Architect</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8fafc;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); padding: 40px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { color: #1e293b; margin-bottom: 20px; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; color: #475569; }
+        input, textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; box-sizing: border-box; }
+        button { width: 100%; background: var(--primary); color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-size: 16px; margin-top: 10px; transition: 0.3s; }
+        button:hover { background: #4338ca; }
+        #output-container { margin-top: 30px; display: none; }
+        #letter-box { background: #f1f5f9; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; white-space: pre-line; font-size: 14px; line-height: 1.6; }
+        .copy-btn { background: #10b981; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>AI Cover Letter Builder</h2>
+    
+    <div class="form-group">
+        <label>Candidate Name</label>
+        <input type="text" id="userName" placeholder="e.g. Alex Rivera">
+    </div>
+    <div class="form-group">
+        <label>Job Role</label>
+        <input type="text" id="jobRole" placeholder="e.g. Frontend Developer">
+    </div>
+    <div class="form-group">
+        <label>Company Name</label>
+        <input type="text" id="company" placeholder="e.g. TechNova Inc.">
+    </div>
+    <div class="form-group">
+        <label>Key Skills (comma separated)</label>
+        <textarea id="skills" rows="3" placeholder="e.g. React, Python, UI Design"></textarea>
+    </div>
+
+    <button onclick="generateLetter()">Generate with AI Simulation</button>
+
+    <div id="output-container">
+        <h3>Your Generated Letter</h3>
+        <div id="letter-box"></div>
+        <button class="copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+</div>
+
+<script>
+    function generateLetter() {
+        // 1. Capture Data
+        const name = document.getElementById('userName').value;
+        const role = document.getElementById('jobRole').value;
+        const company = document.getElementById('company').value;
+        const skills = document.getElementById('skills').value;
+
+        if(!name || !role || !company) {
+            alert("Please fill in all main fields!");
+            return;
+        }
+
+        // 2. Mock AI Logic (Prompt Engineering Simulation)
+        const template = `Dear Hiring Manager at ${company},
+
+I am writing to express my enthusiastic interest in the ${role} position. With a strong background in ${skills}, I am confident that I can contribute effectively to your team at ${company}.
+
+Throughout my career, I have focused on honing my expertise in these areas, and I am eager to bring my unique perspective to your current projects. Thank you for your time and consideration.
+
+Best regards,
+${name}`;
+
+        // 3. Display results
+        document.getElementById('letter-box').innerText = template;
+        document.getElementById('output-container').style.display = 'block';
+    }
+
+    function copyToClipboard() {
+        const text = document.getElementById('letter-box').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Cover letter copied to clipboard!");
+        });
+    }
+</script>
+
+</body>
+</html>
